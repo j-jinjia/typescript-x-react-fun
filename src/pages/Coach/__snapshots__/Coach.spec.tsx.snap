@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Users Page Renders component in loading state 1`] = `
+exports[`Coach Page Renders component in loading state 1`] = `
 <div>
   <div
     class="layout"
@@ -9,7 +9,7 @@ exports[`Users Page Renders component in loading state 1`] = `
       class="layout__main"
     >
       <h1>
-        Users
+        Coach
       </h1>
       <span>
         Loading...

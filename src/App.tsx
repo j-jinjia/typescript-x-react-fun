@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import Coach from "./pages/Coach/Coach";
+import Coaches from "./pages/Coaches/Coaches";
 import Home from "./pages/Home/Home";
 import NotFound from "./pages/NotFound/NotFound";
-import User from "./pages/User/User";
-import Users from "./pages/Users/Users";
 import "./styles/main.scss";
 
 const App = () => {
@@ -10,8 +10,8 @@ const App = () => {
     <Routes>
       {/* Routes here */}
       <Route path="/home" element={<Home />} />
-      <Route path="/users" element={<Users />} />
-      <Route path="/users/:userId" element={<User />} />
+      <Route path="/coaches" element={<Coaches />} />
+      <Route path="/coaches/:coachId" element={<Coach />} />
 
       {/* Any redirects */}
       <Route path="/" element={<Navigate replace to="/home" />} />

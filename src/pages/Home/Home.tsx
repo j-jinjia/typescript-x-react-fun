@@ -1,27 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Layout from "../../components/Layout/Layout";
 
 // to see this page component action, run the app with nothing appended to the URL 🧐
 export const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout>
-      <h1>Page Heading</h1>
-      <h2>Section Heading</h2>
-      <h3>Panel Heading</h3>
-      <p>
-        Lorem ipsum dolor, paragraph text sit amet consectetur adipisicing elit.
-        Non error dolor in nostrum minima odio a fuga saepe soluta adipisci
-        perspiciatis maxime tempora.
-      </p>
-      <p>
-        Lorem ipsum dolor, paragraph text sit amet consectetur adipisicing elit.
-        Non error dolor in nostrum minima odio a fuga saepe soluta adipisci
-        perspiciatis maxime tempora.
-      </p>
+      <h1>TypeScript x React Project</h1>
       <Button
-        label="Log to console"
+        label="See Coaches"
         onClick={() => {
-          console.log("button clicked");
+          navigate("/coaches");
         }}
       />
     </Layout>

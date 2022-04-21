@@ -1,56 +1,26 @@
 import axios, { AxiosResponse } from "axios";
-import UserData from "../types/internal/UserData";
-import UserDataRequest from "../types/server/UserDataRequest";
-import UserDataResponse from "../types/server/UserDataResponse";
-import { formatName } from "../utils/nameUtils";
+import CoachData from "../types/server/CoachData";
 
 const baseUrl = "https://example-user-api.herokuapp.com";
 
-// Requests a single user from the server based on their id
-export const getUser = async (userId: number): Promise<void | UserData> => {
+// Requests a single coach from the server based on their id
+export const getCoach = async (id: number): Promise<void | CoachData> => {
   try {
-    const { data }: AxiosResponse<UserDataResponse> = await axios.get(
-      `${baseUrl}/users/${userId}`
+    const res: AxiosResponse<CoachData> = await axios.get(
+      `${baseUrl}/users/${id}`
     );
-    return getUserFromResponse(data);
+    return res.data;
   } catch (error) {
-    console.error(`error in api.ts -> getUser(${userId}).\n`, { error });
+    console.error(`error in api.ts -> getCoach(${id}).\n`, { error });
   }
 };
 
-// Requests all users from the server
-export const getUsers = async (): Promise<void | UserData[]> => {
+// Requests all coaches from the server
+export const getCoaches = async (): Promise<void | CoachData[]> => {
   try {
-    const { data }: AxiosResponse<UserDataResponse[]> = await axios.get(
-      `${baseUrl}/users`
-    );
-    return data.map((user) => getUserFromResponse(user));
+    const res: AxiosResponse<CoachData[]> = await axios.get(`${baseUrl}/users`);
+    return res.data;
   } catch (error) {
-    console.error(`error in api.ts -> getUsers.\n`, { error });
+    console.error(`error in api.ts -> getCoaches.\n`, { error });
   }
 };
-
-// Example function that would update a user on the server
-export const setUser = async (
-  userData: UserDataRequest
-): Promise<void | UserData> => {
-  try {
-    const { data }: AxiosResponse<UserDataResponse> = await axios.post(
-      "www.example.com/user",
-      userData
-    );
-    return getUserFromResponse(data);
-  } catch (error) {
-    console.error(`error in api.ts -> setUser.\n`, { error });
-  }
-};
-
-// Helper function to convert the server user data object to our frontend user object
-const getUserFromResponse = ({
-  id,
-  firstName,
-  lastName,
-}: UserDataResponse): UserData => ({
-  id,
-  fullName: formatName(firstName, lastName),
-});
