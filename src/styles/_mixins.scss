@@ -1,0 +1,8 @@
+@use "./variables" as *;
+
+@mixin focus-outline {
+  &:focus {
+    outline: 0.188rem $outline-color solid;
+    outline-offset: 0.2rem;
+  }
+}
