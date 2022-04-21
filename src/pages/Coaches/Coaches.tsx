@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { getCoaches } from "../../data/api";
 import CoachData from "../../types/server/CoachData";
@@ -14,20 +14,18 @@ const Coaches = () => {
     })();
   }, []);
 
-  const coachesTsx = useCallback(
-    (coaches: CoachData[] | null) =>
-      coaches && coaches.length > 0 ? (
-        coaches.map((coach) => (
-          <Fragment key={coach.id}>
-            <h2>{formatName(coach.firstName, coach.lastName)}</h2>
-            <p>Coach Id: {coach.id}</p>
-          </Fragment>
-        ))
-      ) : (
-        <span>Sorry, no coaches found</span>
-      ),
-    []
-  );
+  const coachesTsx = (coaches: CoachData[] | null) => {
+    return coaches && coaches.length > 0 ? (
+      coaches.map((coach) => (
+        <Fragment key={coach.id}>
+          <h2>{formatName(coach.firstName, coach.lastName)}</h2>
+          <p>Coach Id: {coach.id}</p>
+        </Fragment>
+      ))
+    ) : (
+      <span>Sorry, no coaches found</span>
+    );
+  };
 
   return (
     <Layout navigation>

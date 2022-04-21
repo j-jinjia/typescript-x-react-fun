@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import { getCoach } from "../../data/api";
@@ -21,18 +21,16 @@ const Coach: React.FC = () => {
     })();
   }, [coachId]);
 
-  const coachTsx = useCallback(
-    (coach: CoachData | null) =>
-      coach ? (
-        <>
-          <p>Name : {formatName(coach?.firstName, coach?.lastName)}</p>
-          <p>Coach Id : {coach?.id}</p>
-        </>
-      ) : (
-        <span>Sorry, no coach found with id of {coachId}</span>
-      ),
-    [coachId]
-  );
+  const coachTsx = (coach: CoachData | null) => {
+    return coach ? (
+      <>
+        <p>Name : {formatName(coach?.firstName, coach?.lastName)}</p>
+        <p>Coach Id : {coach?.id}</p>
+      </>
+    ) : (
+      <span>Sorry, no coach found with id of {coachId}</span>
+    );
+  };
 
   return (
     <Layout navigation>
